@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Ryan Hagan",
+  "classifications": [ "Console" ], 
+  "name": "AdventOfCode 2021 Template",
+  "identity": "AdventOfCode.DayProject",         
+  "shortName": "aoc",
+  "tags": {
+    "language": "C#",
+    "type":"project"
+  },
+  "sourceName": "Day00"
+}
