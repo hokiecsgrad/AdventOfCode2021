@@ -61,4 +61,5 @@ Temporary Items
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,macos,dotnetcore
 
-AoCTemplate
+#AoCTemplate ## Do I want this or not?
+
