@@ -5,7 +5,7 @@ using Xunit;
 
 namespace tests;
 
-public class Day01Tests
+public class Day02Tests
 {
     [Fact]
     public void CalculatePosition_WithSampleInput_ShouldReturn150()
