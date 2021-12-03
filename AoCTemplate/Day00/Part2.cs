@@ -1,7 +1,11 @@
+using System;
 
-public class Part2
+namespace AdventOfCode2021
 {
-    public void Run(string[] data)
+    public class Part2
     {
+        public void Run(string[] data)
+        {
+        }
     }
 }

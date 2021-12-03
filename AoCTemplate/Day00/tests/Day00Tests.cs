@@ -1,12 +1,14 @@
+using AdventOfCode2021;
 using Xunit;
 
-namespace tests;
-
-public class Day00Tests
+namespace AdventOfCode2021.Tests
 {
-    [Fact]
-    public void Test1()
+    public class Day00Tests
     {
+        [Fact]
+        public void Test1()
+        {
 
+        }
     }
 }
