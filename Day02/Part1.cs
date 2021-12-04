@@ -1,28 +1,32 @@
+using System;
 
-public class Part1
+namespace AdventOfCode2021
 {
-    public void Run(string[] data)
+    public class Part1
     {
-        int horizPos = 0;
-        int depth = 0;
-        foreach (var item in data)
+        public void Run(string[] data)
         {
-            string command = string.Empty;
-            int value = 0;
-            (command, value) = ( item.Split(' ')[0], int.Parse(item.Split(' ')[1]) );
-            horizPos += command switch 
+            int horizPos = 0;
+            int depth = 0;
+            foreach (var item in data)
             {
-                "forward" => value,
-                _ => 0,
-            };
-            depth += command switch 
-            {
-                "up" => value * -1,
-                "down" => value,
-                _ => 0,
-            };
-        }
+                string command = string.Empty;
+                int value = 0;
+                (command, value) = (item.Split(' ')[0], int.Parse(item.Split(' ')[1]));
+                horizPos += command switch
+                {
+                    "forward" => value,
+                    _ => 0,
+                };
+                depth += command switch
+                {
+                    "up" => value * -1,
+                    "down" => value,
+                    _ => 0,
+                };
+            }
 
-        Console.WriteLine($"The product of horizontal position and depth is: {horizPos * depth}");
+            Console.WriteLine($"The product of horizontal position and depth is: {horizPos * depth}");
+        }
     }
 }
