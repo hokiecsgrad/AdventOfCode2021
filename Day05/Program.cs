@@ -1,6 +1,6 @@
 ﻿using AdventOfCode.Common;
 
-namespace AdventOfCode2021
+namespace AdventOfCode2021.Day05
 {
     public class Program
     {
