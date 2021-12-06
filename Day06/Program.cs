@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AdventOfCode.Common;
 
-namespace AdventOfCode2021.Day00
+namespace AdventOfCode2021.Day06
 {
     public class Program
     {

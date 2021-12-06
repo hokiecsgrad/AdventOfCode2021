@@ -1,7 +1,11 @@
-using AdventOfCode2021;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using AdventOfCode.Common;
+using AdventOfCode2021.Day00;
 using Xunit;
 
-namespace AdventOfCode2021.Tests
+namespace AdventOfCode2021.Day00.Tests
 {
     public class Day00Tests
     {
