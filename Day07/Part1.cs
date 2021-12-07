@@ -11,9 +11,10 @@ namespace AdventOfCode2021.Day07
         {
             List<int> positions = data[0].Split(',', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList();
 
+            // refactored based on solution from /u/fmorel
             int fuel = Enumerable.Range(0, positions.Max()).Min( i => positions.Select( x => Math.Abs(x - i) ).Sum() );
 
-            System.Console.WriteLine($"The minimum amount of fule needed to align all crab subs is: {fuel}");
+            System.Console.WriteLine($"The minimum amount of fuel needed to align all crab subs is: {fuel}");
         }
     }
 }
