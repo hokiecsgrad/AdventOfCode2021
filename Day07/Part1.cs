@@ -9,23 +9,11 @@ namespace AdventOfCode2021.Day07
     {
         public void Run(string[] data)
         {
-            Dictionary<int, int> positions = data[0].Split(',', StringSplitOptions.RemoveEmptyEntries)
-                    .GroupBy(x => x)
-                    .Select(x => new { Pos = int.Parse(x.Key), NumSubs = x.Count() })
-                    .ToDictionary(group => group.Pos, group => group.NumSubs);
+            List<int> positions = data[0].Split(',', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList();
 
-            int maxPositions = positions.Keys.Max();
-            int fuleNeeded = int.MaxValue;
-            for (int posIndex = 0; posIndex < maxPositions; posIndex++)
-            {
-                int fuleNeededToMoveAllSubsToCurrPos = 0;
-                foreach (var posInfo in positions)
-                    fuleNeededToMoveAllSubsToCurrPos += Math.Abs((posIndex - posInfo.Key) * posInfo.Value);
+            int fuel = Enumerable.Range(0, positions.Max()).Min( i => positions.Select( x => Math.Abs(x - i) ).Sum() );
 
-                fuleNeeded = Math.Min(fuleNeeded, fuleNeededToMoveAllSubsToCurrPos);
-            }
-
-            System.Console.WriteLine($"The minimum amount of fule needed to align all crab subs is: {fuleNeeded}");
+            System.Console.WriteLine($"The minimum amount of fule needed to align all crab subs is: {fuel}");
         }
     }
 }
