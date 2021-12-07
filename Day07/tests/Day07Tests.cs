@@ -12,10 +12,6 @@ namespace AdventOfCode2021.Day07.Tests
         [Fact]
         public void Part1_WithSampleData_ShouldReturn37()
         {
-            // Dictionary<int, int> positions = SampleData.Split(',', StringSplitOptions.RemoveEmptyEntries)
-            //         .GroupBy(x => x)
-            //         .Select(x => new { Pos = int.Parse(x.Key), NumSubs = x.Count() })
-            //         .ToDictionary(group => group.Pos, group => group.NumSubs);
             List<int> positions = SampleData.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList();
 
             int maxPositions = positions.Max();
@@ -27,23 +23,17 @@ namespace AdventOfCode2021.Day07.Tests
         [Fact]
         public void Part2_WithSampleData_ShouldReturn168()
         {
-            Dictionary<int, int> positions = SampleData.Split(',', StringSplitOptions.RemoveEmptyEntries)
-                    .GroupBy(x => x)
-                    .Select(x => new { Pos = int.Parse(x.Key), NumSubs = x.Count() })
-                    .ToDictionary(group => group.Pos, group => group.NumSubs);
+            List<int> positions = SampleData.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList();
 
-            int maxPositions = positions.Keys.Max();
-            int fuleNeeded = int.MaxValue;
-            for (int posIndex = 0; posIndex < maxPositions; posIndex++)
-            {
-                int fuleNeededToMoveAllSubsToCurrPos = 0;
-                foreach (var posInfo in positions)
-                    fuleNeededToMoveAllSubsToCurrPos += SumOfNumbers(Math.Abs(posIndex - posInfo.Key)) * posInfo.Value;
+            int min = positions.Min();
+            int max = positions.Max();
+            int fuel = Enumerable.Range(min, max - min + 1)
+                                    .Min( i => positions.Select( x => Math.Abs(x - i) )
+                                                        .Select( x => x * (x + 1) / 2 )
+                                                        .Sum() 
+                                    );
 
-                fuleNeeded = Math.Min(fuleNeeded, fuleNeededToMoveAllSubsToCurrPos);
-            }
-
-            Assert.Equal(168, fuleNeeded);
+            Assert.Equal(168, fuel);
         }
 
         private int SumOfNumbers(int num)
