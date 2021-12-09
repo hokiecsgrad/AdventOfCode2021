@@ -5,13 +5,24 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": ".NET Core Launch (console)",
+            "name": "Day09 Test Debug (console)",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/Day08/tests/bin/Debug/net6.0/Day08.dll",
+            "program": "${workspaceFolder}/Day09/tests/bin/Debug/net6.0/Day09.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/Day08/tests",
+            "cwd": "${workspaceFolder}/Day09/tests",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Day09 Debug (console)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/Day09/bin/Debug/net6.0/Day09.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Day09",
             "console": "internalConsole",
             "stopAtEntry": false
         },
