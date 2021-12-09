@@ -47,15 +47,42 @@ namespace AdventOfCode2021.Day09.Tests
         [Fact]
         public void Part2_WithSampleData_ShouldReturn1134()
         {
+            List<List<Point>> basins = new();
+            for (int row = 0; row < grid.GetLength(0); row++)
+                for (int col = 0; col < grid.GetLength(1); col++)
+                {
+                    if (grid[row,col] == 9) continue;
+                    bool pointInBasin = false;
+                    foreach (var item in basins)
+                    {
+                        pointInBasin = item.Contains(new Point(row,col));
+                        if (pointInBasin) break;
+                    }
+                    if ( !pointInBasin )
+                    {
+                        List<Point> basin = new();
+                        part2.FloodFillBasin(grid, new Point(row,col), basin);
+                        basins.Add( basin );
+                    }
+                }
 
-            long productOfBasinSizes = 0;
+            long productOfBasinSizes = basins.OrderByDescending(x => x.Count()).Take(3).Aggregate(1, (prod, next) => prod *= next.Count());
             Assert.Equal(1134, productOfBasinSizes);
         }
 
+        [Fact]
+        public void FloodFill_WithExtraSmallGrid_ShouldReturn3PointsInBasin()
+        {
+            grid = new int[2,2] { { 2, 1 }, { 3, 9 } };
+            List<Point> basin = new();
+            part2.FloodFillBasin(grid, new Point(0,0), basin);
+            Assert.Equal(3, basin.Count());
+        }
 
         public Day09Tests()
         {
             part1 = new Part1();
+            part2 = new Part2();
             data = SampleData.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries & StringSplitOptions.TrimEntries);    
             grid = new int[data.Length, data[0].Length];
             for (int row = 0; row < data.Length; row++)
@@ -66,6 +93,7 @@ namespace AdventOfCode2021.Day09.Tests
         private string[] data;
         private int[,] grid;
         private Part1 part1;
+        private Part2 part2;
 
         private string SampleData = "2199943210\n3987894921\n9856789892\n8767896789\n9899965678";
     }
