@@ -13,7 +13,7 @@ namespace AdventOfCode2021.Day12.Tests
         public void Part1_WithSampleData_ShouldReturn226Paths()
         {
             string[] data = "fs-end\nhe - DX\nfs - he\nstart - DX\npj - DX\nend - zg\nzg - sl\nzg - pj\npj - he\nRW - he\nfs - DX\npj - RW\nzg - RW\nstart - pj\nhe - WI\nzg - he\npj - fs\nstart - RW".Split('\n');
-            Graph g = new Graph(data);
+            CaveGraph g = new CaveGraph(data);
 
             List<string> paths = new List<string>();
             paths = g.FindPaths();
@@ -25,7 +25,7 @@ namespace AdventOfCode2021.Day12.Tests
         public void Part1_WithExampleData_ShouldReturn10Paths()
         {
             string[] data = "start-A\nstart-b\nA-c\nA-b\nb-d\nA-end\nb-end".Split('\n');
-            Graph g = new Graph(data);
+            CaveGraph g = new CaveGraph(data);
 
             List<string> paths = new List<string>();
             paths = g.FindPaths();
@@ -37,7 +37,7 @@ namespace AdventOfCode2021.Day12.Tests
         public void CreateGraph_WithExampleData_ShouldCreate6NodeGraph()
         {
             string[] data = "start-A\nstart-b\nA-c\nA-b\nb-d\nA-end\nb-end".Split('\n');
-            Graph g = new Graph(data);
+            CaveGraph g = new CaveGraph(data);
 
             Assert.NotNull(g.GetRootNode());
         }
@@ -46,7 +46,7 @@ namespace AdventOfCode2021.Day12.Tests
         public void FindPaths_WithOnePath_ShouldReturnThatOnePath()
         {
             string[] data = "start-A\nA-end".Split('\n');
-            Graph g = new Graph(data);
+            CaveGraph g = new CaveGraph(data);
 
             List<string> paths = new List<string>();
             paths = g.FindPaths();
@@ -58,7 +58,7 @@ namespace AdventOfCode2021.Day12.Tests
         public void FindPaths_WithOneLargeCaveAndOneSmallCave_ShouldReturnFivePaths()
         {
             string[] data = "start-A\nstart-b\nA-b\nA-end\nb-end".Split('\n');
-            Graph g = new Graph(data);
+            CaveGraph g = new CaveGraph(data);
 
             List<string> paths = new List<string>();
             paths = g.FindPaths();
@@ -70,7 +70,7 @@ namespace AdventOfCode2021.Day12.Tests
         public void Part2_WithExampleData_ShouldReturn36Paths()
         {
             string[] data = "start-A\nstart-b\nA-c\nA-b\nb-d\nA-end\nb-end".Split('\n');
-            Graph g = new Graph(data);
+            CaveGraph g = new CaveGraph(data);
 
             List<string> paths = new List<string>();
             paths = g.FindPathsWithOneSmallCaveVisitedTwice();

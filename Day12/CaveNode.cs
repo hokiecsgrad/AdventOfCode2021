@@ -1,19 +1,19 @@
 using System;
 using System.Collections.Generic;
 
-namespace AdventOfCode.Common
+namespace AdventOfCode2021.Day12
 {
-    public class Node
+    public class CaveNode
     {
         public string Name { get; set; }
-        public List<Node> Edges { get; private set; } = new();
+        public List<CaveNode> Edges { get; private set; } = new();
 
-        public Node(string name)
+        public CaveNode(string name)
         {
             Name = name;
         }
 
-        public void AddEdge(Node dest)
+        public void AddEdge(CaveNode dest)
         {
             if (!Edges.Contains(dest))
                 Edges.Add(dest);

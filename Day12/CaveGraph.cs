@@ -2,28 +2,28 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AdventOfCode.Common
+namespace AdventOfCode2021.Day12
 {
-    public class Graph
+    public class CaveGraph
     {
-        private Node _rootNode = null;
+        private CaveNode _rootNode = null;
 
-        public Graph(string[] data)
+        public CaveGraph(string[] data)
         {
             CreateGraph(data);
         }
 
         public List<string> FindPaths()
         {
-            return TravelPaths(_rootNode, new List<Node>());
+            return TravelPaths(_rootNode, new List<CaveNode>());
         }
 
         public List<string> FindPathsWithOneSmallCaveVisitedTwice()
         {
-            return TravelPaths2(_rootNode, new List<Node>(), null);
+            return TravelPaths2(_rootNode, new List<CaveNode>(), null);
         }
 
-        private List<string> TravelPaths2(Node currNode, List<Node> visited, Node smallCave)
+        private List<string> TravelPaths2(CaveNode currNode, List<CaveNode> visited, CaveNode smallCave)
         {
             if (currNode.Name == "end")
                 return new List<string> { ",end" };
@@ -55,12 +55,12 @@ namespace AdventOfCode.Common
                 List<string> paths = new();
                 if (smallCave is null && currNode.IsSmallCave())
                 {
-                    paths.AddRange(TravelPaths2(node, new List<Node>(visited) { currNode }, currNode));
-                    paths.AddRange(TravelPaths2(node, new List<Node>(visited) { currNode }, null));
+                    paths.AddRange(TravelPaths2(node, new List<CaveNode>(visited) { currNode }, currNode));
+                    paths.AddRange(TravelPaths2(node, new List<CaveNode>(visited) { currNode }, null));
                 }
                 else
                 {
-                    paths.AddRange(TravelPaths2(node, new List<Node>(visited) { currNode }, smallCave));
+                    paths.AddRange(TravelPaths2(node, new List<CaveNode>(visited) { currNode }, smallCave));
                 }
                 string prefix = currNode.Name == "start" ? "" : ",";
                 paths = paths.Select(p => prefix + currNode.Name + p).ToList();
@@ -70,7 +70,7 @@ namespace AdventOfCode.Common
             return currPaths;
         }
 
-        private List<string> TravelPaths(Node currNode, List<Node> visited)
+        private List<string> TravelPaths(CaveNode currNode, List<CaveNode> visited)
         {
             if (currNode.Name == "end") return new List<string> { ",end" };
             if (currNode.IsSmallCave() && visited.Contains(currNode)) return new List<string>();
@@ -78,7 +78,7 @@ namespace AdventOfCode.Common
             List<string> currPaths = new();
             foreach (var node in currNode.Edges)
             {
-                List<string> paths = TravelPaths(node, new List<Node>(visited) { currNode });
+                List<string> paths = TravelPaths(node, new List<CaveNode>(visited) { currNode });
                 string prefix = currNode.Name == "start" ? "" : ",";
                 paths = paths.Select(p => prefix + currNode.Name + p).ToList();
                 currPaths.AddRange(paths);
@@ -89,11 +89,11 @@ namespace AdventOfCode.Common
 
         private void CreateGraph(string[] data)
         {
-            List<Node> nodes = new();
+            List<CaveNode> nodes = new();
             for (int i = 0; i < data.Length; i++)
             {
-                Node node1 = GetNodeOrDefault(data[i].Split('-', StringSplitOptions.TrimEntries)[0], nodes);
-                Node node2 = GetNodeOrDefault(data[i].Split('-', StringSplitOptions.TrimEntries)[1], nodes);
+                CaveNode node1 = GetNodeOrDefault(data[i].Split('-', StringSplitOptions.TrimEntries)[0], nodes);
+                CaveNode node2 = GetNodeOrDefault(data[i].Split('-', StringSplitOptions.TrimEntries)[1], nodes);
 
                 if (_rootNode is null && node1.Name == "start") _rootNode = node1;
                 if (_rootNode is null && node2.Name == "start") _rootNode = node2;
@@ -106,13 +106,13 @@ namespace AdventOfCode.Common
             }
         }
 
-        private Node GetNodeOrDefault(string nodeName, List<Node> nodes)
+        private CaveNode GetNodeOrDefault(string nodeName, List<CaveNode> nodes)
         {
-            Node search = nodes.Find(n => n.Name == nodeName);
+            CaveNode search = nodes.Find(n => n.Name == nodeName);
             if (search is not null) return search;
-            else return new Node(nodeName);
+            else return new CaveNode(nodeName);
         }
 
-        public Node GetRootNode() => _rootNode;
+        public CaveNode GetRootNode() => _rootNode;
     }
 }

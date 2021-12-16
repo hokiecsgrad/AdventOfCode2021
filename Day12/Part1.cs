@@ -9,7 +9,7 @@ namespace AdventOfCode2021.Day12
     {
         public void Run(string[] data)
         {
-            Graph g = new Graph(data);
+            CaveGraph g = new CaveGraph(data);
 
             List<string> paths = new List<string>();
             paths = g.FindPaths();
