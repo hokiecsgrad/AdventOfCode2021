@@ -9,6 +9,11 @@ namespace AdventOfCode2021.Day15
     {
         public void Run(string[] data)
         {
+            Graph g = new Graph(data);
+            Dictionary<string, int> path = g.FindShortestPath();
+
+            // Expecting 398
+            System.Console.WriteLine($"The shortest path is: {path.Last().Value}");
         }
     }
 }
