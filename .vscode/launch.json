@@ -5,24 +5,24 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Day14 Test Debug (console)",
+            "name": "Day16 Test Debug (console)",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/Day14/tests/bin/Debug/net6.0/Day14.dll",
+            "program": "${workspaceFolder}/Day16/tests/bin/Debug/net6.0/Day16.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/Day14/tests",
+            "cwd": "${workspaceFolder}/Day16/tests",
             "console": "internalConsole",
             "stopAtEntry": false
         },
         {
-            "name": "Day14 Debug (console)",
+            "name": "Day16 Debug (console)",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/Day14/bin/Debug/net6.0/Day14.dll",
+            "program": "${workspaceFolder}/Day16/bin/Debug/net6.0/Day16.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/Day14",
+            "cwd": "${workspaceFolder}/Day16",
             "console": "internalConsole",
             "stopAtEntry": false
         },
