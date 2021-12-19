@@ -21,6 +21,12 @@ namespace AdventOfCode2021.Day16
 
         public long Calculate()
         {
+            long result = Rpn(_rpn);
+            return result;
+        }
+
+        private long Rpn(Stack<(int,long)> rpn)
+        {
             int op = -1;
             long total = 0;
             List<long> values = new();
@@ -29,6 +35,14 @@ namespace AdventOfCode2021.Day16
                 (op, long val) = _rpn.Pop();
                 if (op == -1)
                     values.Add(val);
+                else if (op == 99)
+                {
+                    values.Add( Rpn(rpn) );
+                }
+                else if (op == 98)
+                {
+                    return values[0];
+                }
                 else
                 {
                     total = op switch
@@ -46,7 +60,7 @@ namespace AdventOfCode2021.Day16
                     values.Add(total);
                 }
             }
-            return total;
+            return values[0];
         }
 
         public long Parse()
@@ -79,8 +93,10 @@ namespace AdventOfCode2021.Day16
             }
             else
             {
+                _rpn.Push((98,-1));
                 _rpn.Push((type, -1));
                 (version, numBitsProccessed) = ParseOperatorPacket(currString);
+                _rpn.Push((99,-1));
                 sumOfVersions += version;
             }
             totalBitsProcessed += numBitsProccessed;
